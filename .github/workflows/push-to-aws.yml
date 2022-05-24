@@ -1,6 +1,6 @@
 name: Push to Amazon ECR
 
-#on:
+on:
 #  workflow_run:
 #    workflows: ["Build Image"]
 #    types:
@@ -10,8 +10,8 @@ name: Push to Amazon ECR
 #      - dev
 
 env:
-  AWS_REGION: MY_AWS_REGION                   # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: MY_ECR_REPOSITORY           # set this to your Amazon ECR repository name
+  AWS_REGION: us-west-1                   # set this to your preferred AWS region, e.g. us-west-1
+  ECR_REPOSITORY: public.ecr.aws/a1a0n4j9/my-repo           # set this to your Amazon ECR repository name
   ECS_SERVICE: MY_ECS_SERVICE                 # set this to your Amazon ECS service name
   ECS_CLUSTER: MY_ECS_CLUSTER                 # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: MY_ECS_TASK_DEFINITION # set this to the path to your Amazon ECS task definition
