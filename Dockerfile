@@ -13,13 +13,16 @@ RUN truncate -s0 /tmp/preseed.cfg; \
 
     apt-get clean
 
-COPY ./db.sh /
-COPY ./frontend.sh /
+COPY ./index.html /var/www/html/
 
-RUN chmod 770 db.sh && \
-    chmod 700 frontend.sh && \
-    ./db.sh && \
-    ./frontend.sh
+RUN service nginx reload
+
+#COPY ./frontend.sh /
+
+#RUN chmod 770 db.sh && \
+#    chmod 700 frontend.sh && \
+#    ./db.sh && \
+#    ./frontend.sh
 
 EXPOSE 80 8080 27017
 
