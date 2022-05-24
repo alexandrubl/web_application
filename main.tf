@@ -94,14 +94,8 @@ module "application" {
   ]
 }
 
-#===== Create Repository =====
+#===== Create Cluster =====
 
-module "repository" {
-  source = "./modules/repository"
-
-  ecr_name = var.ecr_name
- 
-}
 
 module "ecs_cluster" {
   source = "./modules/ecs_cluster"
