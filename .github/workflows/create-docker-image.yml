@@ -15,7 +15,34 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag webserver:v1
+      run: docker build . --file Dockerfile --tag webserver:v1 --no-cache
+  
+  send-a-message:
+    
+    if: ${{ failure() }}
+    needs: build
+    runs-on: self-hosted
+    
+    steps:
+    - name: Send message
+      run: echo "The build failed"
+      
+  run:
+    if: ${{ success () }}
+    needs: build
+    runs-on: self-hosted
+    
+    steps:
+    - name: Run Docker container
+      run: docker run -d -p 80:80 webserver:v1
+      
+  test-webserver:
+    if: ${{ success () }}
+    needs: run
+    runs-on: self-hosted
+    steps:
+    - name: Test webserver
+      run: curl -v 192.168.64.3:80
 
 
 
