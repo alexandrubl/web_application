@@ -33,7 +33,3 @@ variable "environment" {
 variable "ecs_name" {
   type = string
 }
-
-variable "ecr_name" {
-  type = string
-}
