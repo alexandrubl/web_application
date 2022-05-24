@@ -1,4 +1,4 @@
-output "dev_repo_uri" {
+output "repo_uri" {
   description = "Repo URI"
-  value       = aws_ecrpublic_repository.dev_ecr_repo.repository_uri
+  value       = aws_ecrpublic_repository.decr_repo.repository_uri
 }
