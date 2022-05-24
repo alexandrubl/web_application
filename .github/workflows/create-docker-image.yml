@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag webserver:v1 --no-cache
+      run: docker build . --file Dockerfile --tag webserver:latest --no-cache
   
   send-a-message:
     
@@ -34,7 +34,7 @@ jobs:
     
     steps:
     - name: Run Docker container
-      run: docker run -d -p 80:80 webserver:v1
+      run: docker run -d -p 80:80 webserver:latest
       
   test-webserver:
     if: ${{ success () }}
