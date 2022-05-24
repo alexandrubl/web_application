@@ -1,12 +1,36 @@
-name: Deploy to Amazon ECS
+name: Create aws env
 
-on:
-  workflow_run:
-    workflows: ["Build Image"]
-    types:
-      - completed
+#on:
 #  push:
-#    branches:
-#      - main
+#    paths:
+#       - **.tf
+#    branches: [ dev ]
 
+jobs:
+  test:
+  
+    runs-on: self-hosted
 
+    steps:
+    - uses: actions/checkout@v2
+    - name: Test terraform code
+      run: terrform init && terraform plan
+  
+  send-a-message:
+    
+    if: ${{ failure() }}
+    needs: dev
+    runs-on: self-hosted
+    
+    steps:
+    - name: Send message
+      run: echo "Something went wrong, check the code"
+      
+  deploy-to-aws:
+    if: ${{ success () }}
+    needs: dev
+    runs-on: self-hosted
+    
+    steps:
+    - name: Deploy env to aws
+      run: terraform apply -auto-approve
