@@ -26,11 +26,11 @@
 
 name: Deploy to Amazon ECS
 
-on:
-  workflow_run:
-    workflows: ["Build Image"]
-    types:
-      - completed
+#on:
+#  workflow_run:
+#    workflows: ["Build Image"]
+#    types:
+#      - completed
 #  push:
 #    branches:
 #      - main
